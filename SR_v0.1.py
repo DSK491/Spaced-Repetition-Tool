@@ -28,7 +28,9 @@ def Abort():
     print('\nToo many attempts')
     input("Press Enter to return to main menu...")
 # Center aligns text passed as argument
+terlen = 0
 def Print_Center(text):
+    global terlen
     terlen = os.get_terminal_size()[0]
     #terlen = 80
     print(text.center(terlen))
@@ -279,6 +281,7 @@ def Add_Data():
                 break
             else:
                 print('Enter valid semester between 1 and 8')
+                att += 1
         except:
             print('Enter a valid integer')
             att += 1
@@ -330,16 +333,16 @@ def Add_Data():
                     subject = subject_list[sub_i - 1]
                     print('Subject saved.\n')
                     break
-                
             else:
                 print(f'Enter index of subject between 1 and {len(subject_list)}')
                 att += 1
         except:
             print('Enter a valid integer')
             att +=1
-        i += 1
         if att >= 3:
             Abort()
+            return
+        i += 1
 
 #%% Topic Details
     i = 0
@@ -396,6 +399,7 @@ def Add_Data():
     datcon = input("Add data to database? (yes/no) ")
     if datcon != '' and datcon != 'yes':
         print('Data will not be added to database.\n')
+        input("\nPress Enter to return to Main Menu...")
         return False
     dbtablename = subject
     while True:
@@ -566,6 +570,7 @@ def View_Data():
                     revcon = input(f"Confirm completing {rvcmpchk[0][2:]}: {rvcmpchk[2]} (yes/no) ")
                     if revcon != 'yes' and revcon != '':
                         print("Data will not be logged.")
+                        input("\nPress Enter to return to Main Menu...")
                         i += 1
                         att += 1
                         if att >= 3:
@@ -650,8 +655,9 @@ while True:
         View_Data()
     elif index == len(main_menu):
         Intro()
-        print('\nProgram closed\n\n')
-        print('*')
+        print('\n\nProgram closed\n\n')
+        print('*' * terlen)
+        print('\n')
         break
     else:
         Intro()
