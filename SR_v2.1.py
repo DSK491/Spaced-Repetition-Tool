@@ -1,7 +1,7 @@
 """
 CHANGELOG:
 REFER v2 FOR PREVIOUS CHANGES
-1. Fixed a bug with 'Update Statuses'. Statuses = 1 on present day would be updated to -1.
+1. Fixed a bug with 'Update Statuses'. Statuses = 1 on present day used to be updated to -1.
 
 POSSIBLE ISSUES:
 1. Test Mode needs more thorough testing before usage.
