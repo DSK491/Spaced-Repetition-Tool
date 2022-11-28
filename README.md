@@ -33,4 +33,4 @@ Here, the *Index* associated with the submenu *Add Data* is *1*.</br>
 **Disclaimer: Some functions may not be available as of now (v2.1)**
 
 *Instruction: Before running the program the first time, move the .py to its final directory.*
-    *If it is necessary to move the .py file, move both the .sqlite file (database file) and .py file (code) to the same directory.
+    *If it is necessary to move the .py file, move both the .sqlite file (database file) and .py file (code) to the same directory.*
