@@ -5,7 +5,7 @@ This Tool automates the 'Spaced Repetition' memory technique.
 ### About Spaced Repetition
 
 Spaced Repetition is a memory technique that combats the Forgetting Curve (our memory of a topic is halved within days of learning it). </br>
-It is a process usually done with flashcards, but creating flashcards is a big challenge for me as it is time consuming.
+It is a process usually done with flashcards, but creating flashcards is time consuming and is a big challenge for me.
 
 ### The Tool
 
@@ -30,3 +30,7 @@ Here, the *Index* associated with the submenu *Add Data* is *1*.</br>
 *Test Mode* [*Main Menu* > *Modify Data* > *Test Mode*] pushes forward all reminders during test days. </br>
 **Warning: *Test mode cannot be undone. Please duplicate the database file before using this feature.***
 
+**Disclaimer: Some functions may not be available as of now (v2.1)**
+
+*Instruction: Before running the program the first time, move the .py to its final directory.*
+    *If it is necessary to move the .py file, move both the .sqlite file (database file) and .py file (code) to the same directory.
