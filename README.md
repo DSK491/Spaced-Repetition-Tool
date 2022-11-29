@@ -1,4 +1,4 @@
-# Spaced-Repetition
+# Spaced Repetition Tool
 
 This Tool automates the 'Spaced Repetition' memory technique.
 
