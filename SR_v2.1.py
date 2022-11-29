@@ -2,6 +2,7 @@
 CHANGELOG:
 REFER v2 FOR PREVIOUS CHANGES
 1. Fixed a bug with 'Update Statuses'. Statuses = 1 on present day would be updated to -1.
+2. Renamed 'Subjects' to 'Courses'
 
 POSSIBLE ISSUES:
 1. Test Mode needs more thorough testing before usage.
