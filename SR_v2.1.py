@@ -1,7 +1,7 @@
 """
 CHANGELOG:
 REFER v2 FOR PREVIOUS CHANGES
-1. Fixed a bug with 'Update Statuses'. Statuses = 1 on present day used to be updated to -1.
+1. Fixed a bug with 'Update Statuses'. Statuses = 1 on present day would be updated to -1.
 
 POSSIBLE ISSUES:
 1. Test Mode needs more thorough testing before usage.
@@ -31,7 +31,7 @@ db = DBH.cursor()
 TMACTIVE = 0
 
 main_menu = ['Add Data', 'View/Log Data', 'Modify Data', 'Misc', 'Quit']
-add_menu = ['Date', 'Semester', 'Subject', 'Topic', 'Module', 'Details']
+add_menu = ['Date', 'Semester', 'Course', 'Topic', 'Module', 'Details']
 modify_menu = ['Rename Data', 'Test Mode', 'Update Statuses', 'Return to Main Menu']
 path = []
 
@@ -638,7 +638,7 @@ def View_Data():
 
     # Presenting Data
     if len(Date3Rev) != 0 or len(Date2Rev) != 0 or len(Date1Rev) != 0 or len(Overdue1Rev) != 0 or len(Overdue2Rev) != 0 or len(Overdue3Rev) != 0 or len(DateORev) != 0:
-        print('\t{<Subject>(<Module>): <Topic> [<Details>]}\n')
+        print('\t{<Course>(<Module>): <Topic> [<Details>]}\n')
     i = 0
     # INT3
     if len(Date3Rev) != 0:
