@@ -3,6 +3,7 @@ CHANGELOG:
 REFER v2 FOR PREVIOUS CHANGES
 1. Fixed a bug with 'Update Statuses'. Statuses = 1 on present day would be updated to -1.
 2. Renamed 'Subjects' to 'Courses'
+3. Fixed a bug in 'View/Log Data' where requesting not to save data would not return to main menu.
 
 POSSIBLE ISSUES:
 1. Test Mode needs more thorough testing before usage.
@@ -738,12 +739,7 @@ def View_Data():
                     if revcon != 'yes' and revcon != '':
                         print("Data will not be logged.")
                         input("\nPress Enter to return to Main Menu...")
-                        i += 1
-                        att += 1
-                        if att >= 3:
-                            Abort()
-                            return
-                        continue
+                        return
                     # print(rvcmpchk[:5])
                     # print(Date1Rev)
                     if rvcmpchk[:5] in Date1Rev:
