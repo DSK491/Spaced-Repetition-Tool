@@ -5,6 +5,7 @@ REFER v2.x FOR PREVIOUS CHANGES
 2. Test Mode now starts tests from the date of 'Start Test' instead of the day after the inputted date.
 3. Added option to modify revision reminder interval in Misc submenu
 4. Added option to save .py and .sqlite to separate folders (Must hardcode directory path in .py)
+5. Improved handling of 'Overdue Revisions' presentation
 
 POSSIBLE ISSUES:
 
@@ -28,10 +29,10 @@ from datetime import timedelta
 import sys
 import sqlite3
 
-DBDIR = ''
+# DBDIR = ''
 
 # Add your directory path here
-# DBDIR = '/Applications/Files/Programming/PythonScripts/Spaced Repetition/'
+DBDIR = '/Applications/Files/Programming/PythonScripts/Spaced Repetition/'
 DBNAM = 'Repetition Database.sqlite'
 DBCON = DBDIR + DBNAM
 # print(DBCON)
@@ -68,7 +69,7 @@ for x in I3: I3 = x[0]
 if I1 != '' and I2 != '' and I3 != '':
     if all([I1.isdigit(), I2.isdigit(), I3.isdigit()]):
         if int(I3) > int(I2) > int(I1):
-           INT1, INT2, INT3 = I1, I2, I3
+           INT1, INT2, INT3 = int(I1), int(I2), int(I3)
 
 # test mode variable
 TMACTIVE = 0
@@ -853,23 +854,19 @@ def View_Data():
         # for x in comboverdue: print(x)
         # print('\n\n')
         revlen = len(Revcomp)
-        Revcomp.append(comboverdue[0])
-        j = 0
+        for j in range(len(comboverdue)):
+            if comboverdue[j] not in Revcomp:
+                Revcomp.append(comboverdue[j])
+            #     print(comboverdue[j])
+            # else:
+            #     print('repeat')
+        # print(Revcomp)
         temRev = Revcomp[revlen:]
+        # print('\n\n')
         # print(temRev)
         for content in temRev:
-            # print(content)
-            j += 1
             i += 1
             overdueprint = []
-            
-            # adding new content to a list
-            # idk how this works, it just does, pls don't change
-            #  edit: for loop will not accept string slices, so i created a temporary iterable.
-            #  so i need to append to iterable and to the actual indexing one (Revcomp)
-            if comboverdue[j] not in temRev:
-                Revcomp.append(comboverdue[j])
-                temRev.append(comboverdue[j])
             print(f"\t{i}) {content[0][2:]}({content[3]}): {content[2]}", end = "")
             if content[4] != '':
                 print(f" [{content[4]}]", end = '')
@@ -894,7 +891,6 @@ def View_Data():
                 print('???', end = "")
             # print(overdueprint)
             print('>')
-            
         
     #%% Logging data
     i = 0
