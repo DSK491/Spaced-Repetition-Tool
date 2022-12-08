@@ -29,10 +29,10 @@ from datetime import timedelta
 import sys
 import sqlite3
 
-# DBDIR = ''
+DBDIR = ''
 
 # Add your directory path here
-DBDIR = '/Applications/Files/Programming/PythonScripts/Spaced Repetition/'
+# DBDIR = '/Applications/Files/Programming/PythonScripts/Spaced Repetition/'
 DBNAM = 'Repetition Database.sqlite'
 DBCON = DBDIR + DBNAM
 # print(DBCON)
