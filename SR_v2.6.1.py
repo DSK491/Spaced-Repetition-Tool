@@ -38,14 +38,14 @@ if len(sys.argv) == 2:
     if sys.argv[1] == 'DEV':
         #  use this directory for testing and development
         DBDIR = ''
-        DBDIR = '/Applications/Files/Programming/PythonScripts/Spaced Repetition/'
+        # DBDIR = '/Applications/Files/Programming/PythonScripts/Spaced Repetition/'
         DBNAM = 'Repetition Database TESTING.sqlite'
         print("USING TESTING DATABASE")
         DEVMODE = 1
 else:
     # use this directory for actual usage
     DBDIR = ''
-    DBDIR = '/Applications/Files/Programming/PythonScripts/Spaced Repetition/'
+    # DBDIR = '/Applications/Files/Programming/PythonScripts/Spaced Repetition/'
     DBNAM = 'Spaced Repetition Database.sqlite'
     DEVMODE = 0
 DBCON = DBDIR + DBNAM
