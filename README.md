@@ -31,6 +31,3 @@ Here, the *Index* associated with the submenu *Add Data* is *1*.</br>
 **Warning: *Test mode cannot be undone. Please duplicate the database file before using this feature.***
 
 **Disclaimer: Some functions may not be available yet!**
-
-*Instruction: Before running the program the first time, move the .py to its final directory.*
-    *If it is necessary to move the .py file, move both the .sqlite file (database file) and .py file (code) to the same directory.*
