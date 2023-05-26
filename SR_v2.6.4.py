@@ -7,10 +7,13 @@ REFER v2.6.x FOR PREVIOUS CHANGES
 2. Increased length of notes preview in Misc>View Notes.
 3. Returning from sub-sub menu now returns at sub-menu instead of Main Menu.
 
+1. Semester is no longer prompted in Add Menu
+2. Semester can be updated in Modify Menu>Update Semester
+
 POSSIBLE ISSUES:
 
 Dhruva Kashyap
-4 Feb 2023
+17 Mar 2023
 """
 
 import os
@@ -29,14 +32,14 @@ if len(sys.argv) == 2:
     if sys.argv[1] == 'DEV':
         #  use this directory for testing and development
         DBDIR = ''
-        # DBDIR = '/Users/dhruvakashyap/Documents/PythonScripts/Spaced Repetition/'
+        DBDIR = '/Users/dhruvakashyap/Documents/PythonScripts/Spaced Repetition/'
         DBNAM = 'Repetition Database TESTING.sqlite'
         print("USING TESTING DATABASE")
         DEVMODE = 1
 else:
     # use this directory for actual usage
     DBDIR = ''
-    # DBDIR = '/Users/dhruvakashyap/Library/Mobile Documents/com~apple~CloudDocs/Documents/'
+    DBDIR = '/Users/dhruvakashyap/Library/Mobile Documents/com~apple~CloudDocs/Documents/'
     DBNAM = 'Spaced Repetition Database.sqlite'
     DEVMODE = 0
 DBCON = DBDIR + DBNAM
@@ -106,6 +109,7 @@ add_menu = ['Date',
 
 modify_menu = ['Test Mode',
                'Update Statuses',
+               'Update Semester',
                'Return to Main Menu']
 
 misc_menu = ['Notes',
@@ -650,6 +654,49 @@ def Modify_Intervals():
 
         input("Press Enter to return to previous menu...")
 
+#%%
+def Update_sem():
+    Intro()
+    cursem = db.execute("SELECT Value from Info "
+                     "WHERE Key = 'Semester' LIMIT 1").fetchall()[0][0]
+    
+    print(f"\n\nCurrent semester is {cursem}")
+    #newsem = input("\nEnter new semester: ")
+    i = 0
+    att = 0
+    while i < 3:
+        try:
+            newsem = input("\nEnter new semester: ").strip()
+            # print(f"semester = \"{semester}\" \nsem = {sem}")
+            if newsem == '' or newsem == '0':
+                print('Enter a valid integer.\n')
+                att += 1
+                if att >= 3:
+                    Abort()
+                    return
+                continue
+            semcon = input(f"\nConfirm new semester is {newsem} (yes/no) ").strip()
+            if semcon != 'yes':
+                print("\nSemester will not be updated.\n")
+                input("\nPress Enter to return to previous menu...")
+                return
+            try:
+                db.execute(f"UPDATE Info SET Value = {newsem} WHERE Key = 'Semester'")
+                DBH.commit()
+                print("\nSemester has been updated!")
+            except:
+                print("Unable to save data!\n")
+            input("\nPress Enter to return to previous menu...")
+            return
+            
+        except Exception:
+            print('Enter a valid integer')
+            att += 1
+        i += 1
+        if att >= 3:
+            Abort()
+            return
+
 
 # %%
 def Notes():
@@ -812,7 +859,7 @@ def Delete_notes():
                     break
     else:
         print("Note will not be deleted.\n")
-
+    
     input("\nPress Enter to return to previous menu...")
 
 
@@ -838,7 +885,7 @@ def View_notes():
         content += "\""
         print(f"{index}) {content}")
         x += 1
-    print(f"{len(notes) + 1}) Return to Main Menu")
+    print(f"{len(notes) + 1}) Return to Notes Menu")
     print('')
     i = 0
     att = 0
@@ -909,7 +956,7 @@ def Add_Data():
             return
 
 # %% Semester Details
-    i = 0
+    '''i = 0
     att = 0
     sem = db.execute("SELECT Value from Info "
                      "WHERE Key = 'Semester' LIMIT 1").fetchall()[0][0]
@@ -966,6 +1013,15 @@ def Add_Data():
             Abort()
             return
     db.execute(f"UPDATE Info SET Value = {semester} WHERE Key = 'Semester'")
+    '''
+    semester = db.execute("SELECT Value from Info "
+                     "WHERE Key = 'Semester' LIMIT 1").fetchall()[0][0]
+    subject_list = []
+    sub_cur = db.execute('SELECT name FROM sqlite_schema')
+    for val in sub_cur:
+        if f'S{semester}' in val[0]:
+            subject_list.append(val[0])
+    print(f"Semester: {semester}\n")
 
 # %% Subject Details
     i = 0
@@ -1568,6 +1624,8 @@ def Modify_Data():
         print('\n')
         Update_Data()
         input("\nPress Enter to return to previous menu...")
+    elif index == 3:
+        Update_sem()
     else:
         Intro()
         print('\nUnder Construction!')
