@@ -29,5 +29,3 @@ Here, the *Index* associated with the submenu *Add Data* is *1*.</br>
 
 *Test Mode* [*Main Menu* > *Modify Data* > *Test Mode*] pushes forward all reminders during test days. </br>
 **Warning: *Test mode cannot be undone. Please duplicate the database file before using this feature.***
-
-**Disclaimer: Some functions may not be available yet!**
